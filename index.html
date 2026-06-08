@@ -19,12 +19,10 @@
         .sidebar { width: 300px; background: #2c3e50; color: white; display: flex; flex-direction: column; }
         .sidebar-header { padding: 20px; background: #34495e; display: flex; justify-content: space-between; align-items: center; }
         .logout-btn { background: #e74c3c; border: none; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 14px; }
-        .logout-btn:hover { background: #c0392b; }
         .users-list { flex: 1; overflow-y: auto; padding: 10px; }
         .user-item {
             padding: 15px; margin: 5px 0; background: #34495e;
             border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; position: relative;
-            transition: all 0.2s;
         }
         .user-item:hover { background: #4a6785; }
         .user-item.active { background: #3498db; }
@@ -32,73 +30,59 @@
             width: 40px; height: 40px; border-radius: 50%;
             background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; flex-shrink: 0;
-            font-size: 18px;
         }
-        .user-info { flex: 1; }
-        .user-name { font-size: 14px; font-weight: 500; }
-        .user-status { font-size: 12px; margin-top: 2px; }
-        .status-online { color: #2ecc71; }
-        .status-offline { color: #95a5a6; }
         .delete-btn {
             position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
             background: #e74c3c; border: none; color: white;
             width: 28px; height: 28px; border-radius: 50%;
             cursor: pointer; font-size: 16px; display: none; z-index: 10;
-            align-items: center; justify-content: center; line-height: 1;
         }
-        .user-item:hover .delete-btn { display: flex; }
-        .delete-btn:hover { background: #c0392b; }
-        .main-chat { flex: 1; display: flex; flex-direction: column; }
+        .user-item:hover .delete-btn { display: block; }
+        .main-chat { flex: 1; display: flex; flex-direction: column; height: 100%; }
         .chat-header {
             padding: 20px; background: #ecf0f1; border-bottom: 1px solid #ddd;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
         }
-        .chat-header h3 { font-size: 18px; }
-        .call-buttons { display: flex; gap: 10px; align-items: center; }
         .call-btn {
             background: #2ecc71; border: none; color: white;
             padding: 10px 20px; border-radius: 10px; cursor: pointer; font-size: 14px;
         }
-        .call-btn:hover { background: #27ae60; }
         .end-call-btn {
             background: #e74c3c; border: none; color: white;
             padding: 10px 20px; border-radius: 10px; cursor: pointer; font-size: 14px; display: none;
         }
-        .end-call-btn:hover { background: #c0392b; }
         .call-indicator {
             background: #2ecc71; color: white; padding: 6px 12px;
-            border-radius: 20px; font-size: 12px; display: none; animation: pulse 1.5s infinite;
+            border-radius: 20px; font-size: 12px; display: none;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .messages-area {
+            flex: 1; padding: 20px; overflow-y: auto; background: #f8f9fa;
         }
-        .messages-area { flex: 1; padding: 20px; overflow-y: auto; background: #f8f9fa; }
         .message { margin: 8px 0; display: flex; flex-direction: column; }
         .message.sent { align-items: flex-end; }
         .message.received { align-items: flex-start; }
         .message-bubble {
             max-width: 70%; padding: 10px 15px; border-radius: 15px;
-            word-wrap: break-word; font-size: 14px; line-height: 1.4;
+            word-wrap: break-word; font-size: 14px;
         }
-        .sent .message-bubble { background: #3498db; color: white; border-bottom-right-radius: 3px; }
-        .received .message-bubble { background: white; border: 1px solid #ddd; border-bottom-left-radius: 3px; }
-        .message-time { font-size: 10px; opacity: 0.7; margin-top: 4px; display: flex; gap: 5px; }
-        .sent .message-time { justify-content: flex-end; }
-        .input-area { padding: 15px; background: white; border-top: 1px solid #ddd; display: flex; gap: 10px; }
+        .sent .message-bubble { background: #3498db; color: white; }
+        .received .message-bubble { background: white; border: 1px solid #ddd; }
+        .message-time { font-size: 10px; opacity: 0.7; margin-top: 4px; }
+        .input-area {
+            padding: 15px; background: white; border-top: 1px solid #ddd;
+            display: flex; gap: 10px; flex-shrink: 0;
+        }
         .input-area input {
-            flex: 1; padding: 12px 18px; border: 2px solid #e0e0e0;
+            flex: 1; padding: 12px; border: 2px solid #e0e0e0;
             border-radius: 25px; outline: none; font-size: 14px;
         }
-        .input-area input:focus { border-color: #3498db; }
         .send-btn {
             background: #3498db; border: none; color: white;
-            padding: 12px 25px; border-radius: 25px; cursor: pointer; font-size: 16px; font-weight: bold;
+            padding: 12px 25px; border-radius: 25px; cursor: pointer; font-size: 16px;
         }
-        .send-btn:hover { background: #2980b9; }
         .no-chat {
             flex: 1; display: flex; align-items: center; justify-content: center;
-            color: #aaa; font-size: 18px; flex-direction: column; gap: 10px;
+            color: #aaa; font-size: 18px; flex-direction: column;
         }
         .modal {
             display: none; position: fixed; top: 0; left: 0;
@@ -108,57 +92,39 @@
         .modal.show { display: flex; }
         .modal-content {
             background: white; padding: 30px; border-radius: 20px;
-            width: 90%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            width: 90%; max-width: 400px;
         }
-        .modal-content h2 { margin-bottom: 20px; text-align: center; color: #2c3e50; }
+        .modal-content h2 { margin-bottom: 20px; text-align: center; }
         .modal-content input {
-            width: 100%; padding: 12px 15px; margin: 10px 0;
-            border: 2px solid #e0e0e0; border-radius: 10px; outline: none; font-size: 14px;
+            width: 100%; padding: 12px; margin: 10px 0;
+            border: 2px solid #e0e0e0; border-radius: 10px; outline: none;
         }
-        .modal-content input:focus { border-color: #3498db; }
         .modal-content button {
             width: 100%; padding: 12px; background: #3498db; color: white;
-            border: none; border-radius: 10px; cursor: pointer; font-size: 16px; margin-top: 10px; font-weight: bold;
+            border: none; border-radius: 10px; cursor: pointer; margin-top: 10px;
         }
-        .modal-content button:hover { background: #2980b9; }
-        .toggle-auth {
-            text-align: center; margin-top: 15px; color: #7f8c8d;
-            cursor: pointer; font-size: 14px;
-        }
-        .toggle-auth:hover { color: #3498db; }
+        .toggle-auth { text-align: center; margin-top: 15px; color: #7f8c8d; cursor: pointer; }
         .notification {
             position: fixed; top: 20px; right: 20px; padding: 12px 20px;
             border-radius: 10px; color: white; z-index: 2000; display: none;
-            font-weight: bold; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            animation: slideIn 0.3s ease;
-        }
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
         }
         .notification.success { background: #2ecc71; }
         .notification.error { background: #e74c3c; }
-        .notification.info { background: #3498db; }
         .call-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); display: none;
+            background: rgba(0,0,0,0.7); display: none;
             justify-content: center; align-items: center; z-index: 3000;
         }
         .call-overlay.show { display: flex; }
         .call-box {
-            background: white; padding: 30px; border-radius: 20px;
-            text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            background: white; padding: 30px; border-radius: 20px; text-align: center;
         }
-        .call-box h2 { margin-bottom: 5px; }
-        .call-box .caller-name { margin: 15px 0; font-size: 18px; font-weight: bold; }
         .call-box button {
             padding: 12px 30px; margin: 5px; border: none;
-            border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold;
+            border-radius: 10px; cursor: pointer; font-size: 16px;
         }
         .btn-accept { background: #2ecc71; color: white; }
-        .btn-accept:hover { background: #27ae60; }
         .btn-reject { background: #e74c3c; color: white; }
-        .btn-reject:hover { background: #c0392b; }
     </style>
 </head>
 <body>
@@ -168,29 +134,22 @@
                 <h2>MESAGE</h2>
                 <button class="logout-btn" onclick="window.logout()">Выйти</button>
             </div>
-            <div class="users-list" id="usersList">
-                <div style="text-align:center;padding:30px;color:#aaa;">Загрузка...</div>
-            </div>
+            <div class="users-list" id="usersList"></div>
         </div>
         <div class="main-chat">
-            <div class="no-chat" id="noChat">
-                <div style="font-size:50px;">💬</div>
-                <div>Выберите пользователя для начала общения</div>
-            </div>
+            <div class="no-chat" id="noChat">💬 Выберите пользователя</div>
             <div id="chatArea" style="display:none;flex:1;flex-direction:column;">
                 <div class="chat-header">
                     <h3 id="chatName"></h3>
-                    <div class="call-buttons">
-                        <span class="call-indicator" id="callInd">📞 Звонок активен</span>
+                    <div>
+                        <span class="call-indicator" id="callInd">📞 Активен</span>
                         <button class="call-btn" id="callBtn" onclick="window.startCall()">📞 Позвонить</button>
                         <button class="end-call-btn" id="endCallBtn" onclick="window.endCall()">❌ Завершить</button>
                     </div>
                 </div>
-                <div class="messages-area" id="messagesArea">
-                    <div style="text-align:center;color:#aaa;margin-top:50px;">Загрузка сообщений...</div>
-                </div>
+                <div class="messages-area" id="messagesArea"></div>
                 <div class="input-area">
-                    <input type="text" id="messageInput" placeholder="Введите сообщение...">
+                    <input type="text" id="messageInput" placeholder="Сообщение...">
                     <button class="send-btn" onclick="window.sendMessage()">➤</button>
                 </div>
             </div>
@@ -202,19 +161,16 @@
             <h2 id="authTitle">Вход в MESAGE</h2>
             <input type="email" id="emailInput" placeholder="Email">
             <input type="password" id="passwordInput" placeholder="Пароль">
-            <input type="text" id="usernameInput" placeholder="Имя пользователя" style="display:none;">
+            <input type="text" id="usernameInput" placeholder="Имя" style="display:none;">
             <button onclick="window.authenticate()" id="authBtn">Войти</button>
-            <div class="toggle-auth" onclick="window.toggleAuth()">
-                <span id="toggleText">Нет аккаунта? Зарегистрироваться</span>
-            </div>
+            <div class="toggle-auth" onclick="window.toggleAuth()"><span id="toggleText">Регистрация</span></div>
         </div>
     </div>
 
     <div class="call-overlay" id="callOverlay">
         <div class="call-box">
-            <div style="font-size:50px;">📞</div>
-            <h2>Входящий звонок</h2>
-            <div class="caller-name" id="callerName"></div>
+            <h2>📞 Входящий звонок</h2>
+            <p id="callerName" style="font-size:18px;margin:15px 0;"></p>
             <button class="btn-accept" onclick="window.acceptCall()">✅ Ответить</button>
             <button class="btn-reject" onclick="window.rejectCall()">❌ Отклонить</button>
         </div>
@@ -240,168 +196,110 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
-        const ADMIN_EMAIL = "Sashakrut53@yandex.ru";
+        const ADMIN = "Sashakrut53@yandex.ru";
 
-        let currentUser = null;
-        let selectedUser = null;
-        let peer = null;
-        let currentCall = null;
-        let localStream = null;
-        let messagesUnsub = null;
-        let isAdmin = false;
-        let loginMode = true;
-        let incomingCall = null;
+        let currentUser = null, selectedUser = null, peer = null;
+        let currentCall = null, localStream = null, unsub = null;
+        let isAdmin = false, loginMode = true, incomingCall = null;
 
         function notify(msg, type) {
             const el = document.getElementById('notification');
-            el.textContent = msg;
-            el.className = 'notification ' + type;
+            el.textContent = msg; el.className = 'notification ' + type;
             el.style.display = 'block';
-            clearTimeout(el._t);
-            el._t = setTimeout(() => { el.style.display = 'none'; }, 3000);
+            clearTimeout(el._t); el._t = setTimeout(() => el.style.display = 'none', 3000);
         }
 
-        window.toggleAuth = function() {
+        window.toggleAuth = () => {
             loginMode = !loginMode;
-            document.getElementById('authTitle').textContent = loginMode ? 'Вход в MESAGE' : 'Регистрация в MESAGE';
+            document.getElementById('authTitle').textContent = loginMode ? 'Вход' : 'Регистрация';
             document.getElementById('usernameInput').style.display = loginMode ? 'none' : 'block';
-            document.getElementById('authBtn').textContent = loginMode ? 'Войти' : 'Зарегистрироваться';
-            document.getElementById('toggleText').textContent = loginMode ? 'Нет аккаунта? Зарегистрироваться' : 'Есть аккаунт? Войти';
+            document.getElementById('authBtn').textContent = loginMode ? 'Войти' : 'Зарегистр.';
+            document.getElementById('toggleText').textContent = loginMode ? 'Регистрация' : 'Вход';
         };
 
-        window.authenticate = async function() {
+        window.authenticate = async () => {
             const email = document.getElementById('emailInput').value.trim();
-            const password = document.getElementById('passwordInput').value.trim();
-            const username = document.getElementById('usernameInput').value.trim();
-
-            if (!email || !password) { notify('Заполните все поля', 'error'); return; }
-            if (!loginMode && !username) { notify('Введите имя', 'error'); return; }
-
+            const pass = document.getElementById('passwordInput').value.trim();
+            const name = document.getElementById('usernameInput').value.trim();
+            if (!email || !pass) return notify('Заполните поля', 'error');
             try {
                 if (loginMode) {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    notify('Вход выполнен!', 'success');
+                    await signInWithEmailAndPassword(auth, email, pass);
                 } else {
-                    const cred = await createUserWithEmailAndPassword(auth, email, password);
-                    await setDoc(doc(db, 'users', cred.user.uid), {
-                        uid: cred.user.uid, email: email, username: username,
-                        online: true, lastSeen: serverTimestamp()
+                    if (!name) return notify('Введите имя', 'error');
+                    const uc = await createUserWithEmailAndPassword(auth, email, pass);
+                    await setDoc(doc(db, 'users', uc.user.uid), {
+                        uid: uc.user.uid, email, username: name, online: true, lastSeen: serverTimestamp()
                     });
-                    notify('Регистрация успешна!', 'success');
                 }
-            } catch (e) {
-                let msg = 'Ошибка';
-                if (e.code === 'auth/email-already-in-use') msg = 'Email уже используется';
-                else if (e.code === 'auth/invalid-credential') msg = 'Неверный email или пароль';
-                else if (e.code === 'auth/weak-password') msg = 'Пароль минимум 6 символов';
-                else if (e.code === 'auth/invalid-email') msg = 'Некорректный email';
-                notify(msg, 'error');
+                notify('Успешно!', 'success');
+            } catch(e) {
+                let m = 'Ошибка';
+                if (e.code === 'auth/email-already-in-use') m = 'Email занят';
+                else if (e.code === 'auth/invalid-credential') m = 'Неверно';
+                else if (e.code === 'auth/weak-password') m = 'Пароль: 6+ символов';
+                notify(m, 'error');
             }
         };
 
-        onAuthStateChanged(auth, async (user) => {
+        onAuthStateChanged(auth, async user => {
             if (user) {
-                currentUser = user;
-                isAdmin = user.email === ADMIN_EMAIL;
+                currentUser = user; isAdmin = user.email === ADMIN;
                 document.getElementById('authModal').classList.remove('show');
                 document.getElementById('app').style.display = 'flex';
-                
-                const userRef = doc(db, 'users', user.uid);
-                const snap = await getDoc(userRef);
+                const ref = doc(db, 'users', user.uid);
+                const snap = await getDoc(ref);
                 if (!snap.exists()) {
-                    await setDoc(userRef, {
-                        uid: user.uid, email: user.email,
-                        username: user.email.split('@')[0], online: true, lastSeen: serverTimestamp()
-                    });
+                    await setDoc(ref, { uid: user.uid, email: user.email, username: user.email.split('@')[0], online: true, lastSeen: serverTimestamp() });
                 } else {
-                    await setDoc(userRef, { online: true, lastSeen: serverTimestamp() }, { merge: true });
+                    await setDoc(ref, { online: true, lastSeen: serverTimestamp() }, { merge: true });
                 }
-                
                 initPeer(user.uid);
                 loadUsers();
-                
-                window.addEventListener('beforeunload', () => {
-                    if (peer) peer.destroy();
-                    setDoc(userRef, { online: false, lastSeen: serverTimestamp() }, { merge: true });
-                });
             } else {
-                currentUser = null; isAdmin = false;
-                if (peer) { peer.destroy(); peer = null; }
-                endCallQuiet();
+                if (peer) peer.destroy();
                 document.getElementById('authModal').classList.add('show');
                 document.getElementById('app').style.display = 'none';
             }
         });
 
         function initPeer(uid) {
-            if (peer) { peer.destroy(); peer = null; }
+            if (peer) peer.destroy();
             const id = uid.replace(/[^a-zA-Z0-9]/g, '');
-            
             peer = new Peer(id, {
-                host: '0.peerjs.com',
-                port: 443,
-                secure: true,
-                path: '/',
-                config: {
-                    iceServers: [
-                        { urls: 'stun:stun.l.google.com:19302' },
-                        { urls: 'stun:stun1.l.google.com:19302' },
-                        { urls: 'stun:stun2.l.google.com:19302' }
-                    ]
-                }
+                host: 'peerjs.herokuapp.com', port: 443, secure: true, path: '/',
+                config: { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] }
             });
             
-            peer.on('open', (pid) => { console.log('PeerJS готов:', pid); });
+            peer.on('open', pid => console.log('Peer ready:', pid));
             
-            peer.on('call', (call) => {
-                console.log('Входящий звонок от:', call.peer);
+            peer.on('call', call => {
                 incomingCall = call;
                 document.getElementById('callOverlay').classList.add('show');
                 getDoc(doc(db, 'users', call.peer)).then(d => {
                     document.getElementById('callerName').textContent = d.exists() ? d.data().username : 'Пользователь';
                 });
-                
-                clearTimeout(call._timeout);
-                call._timeout = setTimeout(() => {
-                    if (incomingCall === call) window.rejectCall();
-                }, 30000);
             });
             
-            peer.on('error', (err) => {
-                console.error('PeerJS error:', err);
-                if (err.type === 'peer-unavailable') notify('Пользователь недоступен', 'error');
+            peer.on('error', e => {
+                if (e.type === 'peer-unavailable') notify('Пользователь недоступен', 'error');
             });
         }
 
-        window.acceptCall = async function() {
+        window.acceptCall = async () => {
             if (!incomingCall) return;
-            const call = incomingCall;
-            incomingCall = null;
+            const call = incomingCall; incomingCall = null;
             document.getElementById('callOverlay').classList.remove('show');
-            clearTimeout(call._timeout);
-            
             try {
-                localStream = await navigator.mediaDevices.getUserMedia({ 
-                    audio: { echoCancellation: true, noiseSuppression: true } 
-                });
+                localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 call.answer(localStream);
                 handleCall(call);
-                notify('Разговор начат!', 'success');
-            } catch (e) {
-                console.error('Ошибка микрофона:', e);
-                call.close();
-                notify('Ошибка доступа к микрофону', 'error');
-            }
+            } catch(e) { call.close(); notify('Ошибка микрофона', 'error'); }
         };
 
-        window.rejectCall = function() {
-            if (incomingCall) {
-                clearTimeout(incomingCall._timeout);
-                incomingCall.close();
-                incomingCall = null;
-            }
+        window.rejectCall = () => {
+            if (incomingCall) { incomingCall.close(); incomingCall = null; }
             document.getElementById('callOverlay').classList.remove('show');
-            notify('Звонок отклонён', 'info');
         };
 
         function handleCall(call) {
@@ -410,260 +308,106 @@
             document.getElementById('endCallBtn').style.display = 'inline-block';
             document.getElementById('callInd').style.display = 'inline-block';
             
-            call.on('stream', (stream) => {
-                console.log('Получен аудиопоток');
-                const audio = new Audio();
-                audio.srcObject = stream;
-                audio.play().catch(e => {
-                    console.error('Ошибка воспроизведения:', e);
-                    document.addEventListener('click', function playAudio() {
-                        audio.play().catch(() => {});
-                        document.removeEventListener('click', playAudio);
-                    }, { once: true });
-                });
+            call.on('stream', stream => {
+                const audio = new Audio(); audio.srcObject = stream;
+                audio.play().catch(() => document.addEventListener('click', () => audio.play(), { once: true }));
+                notify('Разговор!', 'success');
             });
             
-            call.on('close', () => {
-                console.log('Звонок завершён собеседником');
-                endCallQuiet();
-                notify('Звонок завершён', 'info');
-            });
-            
-            call.on('error', (err) => {
-                console.error('Ошибка звонка:', err);
-                endCallQuiet();
-                notify('Связь прервана', 'error');
-            });
+            call.on('close', () => { endCallQuiet(); notify('Звонок завершён', 'info'); });
+            call.on('error', () => { endCallQuiet(); });
         }
 
-        window.endCall = function() {
-            if (currentCall) {
-                currentCall.close();
-                currentCall = null;
-            }
-            endCallQuiet();
-            notify('Звонок завершён', 'info');
-        };
+        window.endCall = () => { if (currentCall) currentCall.close(); endCallQuiet(); notify('Завершено', 'info'); };
 
         function endCallQuiet() {
-            if (currentCall) {
-                try { currentCall.close(); } catch(e) {}
-                currentCall = null;
-            }
-            if (localStream) {
-                localStream.getTracks().forEach(t => t.stop());
-                localStream = null;
-            }
+            if (currentCall) { try { currentCall.close() } catch(e) {}; currentCall = null; }
+            if (localStream) { localStream.getTracks().forEach(t => t.stop()); localStream = null; }
             document.getElementById('callBtn').style.display = 'inline-block';
             document.getElementById('endCallBtn').style.display = 'none';
             document.getElementById('callInd').style.display = 'none';
         }
 
-        window.startCall = async function() {
-            if (!selectedUser) { notify('Выберите пользователя', 'error'); return; }
-            if (!selectedUser.online) { notify('Пользователь оффлайн', 'error'); return; }
-            
+        window.startCall = async () => {
+            if (!selectedUser) return notify('Выберите пользователя', 'error');
             try {
-                localStream = await navigator.mediaDevices.getUserMedia({ 
-                    audio: { echoCancellation: true, noiseSuppression: true } 
-                });
-                const receiverId = selectedUser.id.replace(/[^a-zA-Z0-9]/g, '');
-                const call = peer.call(receiverId, localStream);
-                
-                if (call) {
-                    handleCall(call);
-                    notify('Звоним...', 'info');
-                } else {
-                    notify('Не удалось позвонить', 'error');
-                    localStream.getTracks().forEach(t => t.stop());
-                    localStream = null;
-                }
-            } catch (e) {
-                console.error('Ошибка звонка:', e);
-                notify('Ошибка микрофона', 'error');
-            }
+                localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const call = peer.call(selectedUser.id.replace(/[^a-zA-Z0-9]/g, ''), localStream);
+                if (call) handleCall(call); else { localStream.getTracks().forEach(t => t.stop()); localStream = null; }
+            } catch(e) { notify('Ошибка микрофона', 'error'); }
         };
 
         function loadUsers() {
-            const usersRef = collection(db, 'users');
-            
-            onSnapshot(usersRef, (snapshot) => {
-                const listEl = document.getElementById('usersList');
-                listEl.innerHTML = '';
-                
-                if (snapshot.empty) {
-                    listEl.innerHTML = '<div style="text-align:center;padding:30px;color:#aaa;">Нет пользователей</div>';
-                    return;
-                }
-                
-                snapshot.forEach((docSnap) => {
-                    const data = docSnap.data();
-                    const userId = docSnap.id;
-                    
+            onSnapshot(collection(db, 'users'), snap => {
+                const list = document.getElementById('usersList');
+                list.innerHTML = '';
+                snap.forEach(d => {
+                    const data = d.data();
                     if (data.uid !== currentUser.uid) {
-                        const item = document.createElement('div');
-                        item.className = 'user-item';
-                        item.setAttribute('data-uid', userId);
-                        
-                        item.innerHTML = `
-                            <div class="user-avatar">${(data.username || '?')[0].toUpperCase()}</div>
-                            <div class="user-info">
-                                <div class="user-name">${data.username || 'Пользователь'}</div>
-                                <div class="user-status ${data.online ? 'status-online' : 'status-offline'}">
-                                    ${data.online ? '🟢 Онлайн' : '⚫ Оффлайн'}
-                                </div>
-                            </div>
-                        `;
-                        
+                        const div = document.createElement('div');
+                        div.className = 'user-item';
+                        div.setAttribute('data-uid', d.id);
+                        div.innerHTML = `<div class="user-avatar">${(data.username||'?')[0].toUpperCase()}</div><div style="flex:1"><div>${data.username}</div><div style="font-size:12px;color:${data.online?'#2ecc71':'#95a5a6'}">${data.online?'Онлайн':'Оффлайн'}</div></div>`;
                         if (isAdmin) {
-                            const delBtn = document.createElement('button');
-                            delBtn.className = 'delete-btn';
-                            delBtn.textContent = '✕';
-                            delBtn.title = 'Удалить пользователя';
-                            delBtn.onclick = function(e) {
-                                e.stopPropagation();
-                                deleteUser(userId, data.username);
-                            };
-                            item.appendChild(delBtn);
+                            const btn = document.createElement('button');
+                            btn.className = 'delete-btn'; btn.textContent = '✕';
+                            btn.onclick = e => { e.stopPropagation(); delUser(d.id, data.username); };
+                            div.appendChild(btn);
                         }
-                        
-                        item.onclick = function() { selectUser(userId, data); };
-                        listEl.appendChild(item);
+                        div.onclick = () => selectUser(d.id, data);
+                        list.appendChild(div);
                     }
                 });
-            }, (error) => {
-                console.error('Ошибка загрузки пользователей:', error);
-                document.getElementById('usersList').innerHTML = '<div style="text-align:center;padding:30px;color:#e74c3c;">Ошибка загрузки</div>';
             });
         }
 
-        async function deleteUser(userId, username) {
-            if (!isAdmin) return;
-            if (!confirm(`Удалить пользователя "${username}"?\n\nВсе сообщения с ним будут удалены.`)) return;
-            
-            try {
-                await deleteDoc(doc(db, 'users', userId));
-                
-                const chatId = [currentUser.uid, userId].sort().join('_');
-                const msgsSnap = await getDocs(query(collection(db, 'messages'), where('chatId', '==', chatId)));
-                for (const msgDoc of msgsSnap.docs) {
-                    await deleteDoc(msgDoc.ref);
-                }
-                
-                notify(`"${username}" удалён`, 'success');
-                
-                if (selectedUser && selectedUser.id === userId) {
-                    selectedUser = null;
-                    document.getElementById('chatArea').style.display = 'none';
-                    document.getElementById('noChat').style.display = 'flex';
-                }
-            } catch (e) {
-                console.error('Ошибка удаления:', e);
-                notify('Ошибка удаления', 'error');
-            }
+        async function delUser(uid, name) {
+            if (!confirm(`Удалить ${name}?`)) return;
+            await deleteDoc(doc(db, 'users', uid));
+            notify(`${name} удалён`, 'success');
         }
 
-        function selectUser(userId, data) {
-            selectedUser = { id: userId, ...data };
-            
+        function selectUser(uid, data) {
+            selectedUser = { id: uid, ...data };
             document.getElementById('noChat').style.display = 'none';
             document.getElementById('chatArea').style.display = 'flex';
             document.getElementById('chatName').textContent = data.username;
+            document.querySelectorAll('.user-item').forEach(e => e.classList.remove('active'));
+            document.querySelector(`[data-uid="${uid}"]`)?.classList.add('active');
+            if (unsub) unsub();
             
-            document.querySelectorAll('.user-item').forEach(el => el.classList.remove('active'));
-            const userEl = document.querySelector(`[data-uid="${userId}"]`);
-            if (userEl) userEl.classList.add('active');
-            
-            if (messagesUnsub) messagesUnsub();
-            
-            const chatId = [currentUser.uid, userId].sort().join('_');
-            const q = query(
-                collection(db, 'messages'),
-                where('chatId', '==', chatId),
-                orderBy('timestamp', 'asc')
-            );
-            
-            messagesUnsub = onSnapshot(q, (snap) => {
+            const chatId = [currentUser.uid, uid].sort().join('_');
+            unsub = onSnapshot(query(collection(db, 'messages'), where('chatId', '==', chatId), orderBy('timestamp', 'asc')), snap => {
                 const area = document.getElementById('messagesArea');
-                area.innerHTML = '';
-                
-                if (snap.empty) {
-                    area.innerHTML = '<div style="text-align:center;color:#aaa;margin-top:50px;">Нет сообщений. Напишите первым!</div>';
-                } else {
-                    snap.forEach((msgDoc) => {
-                        const msg = msgDoc.data();
-                        const div = document.createElement('div');
-                        div.className = 'message ' + (msg.senderId === currentUser.uid ? 'sent' : 'received');
-                        
-                        const time = msg.timestamp 
-                            ? new Date(msg.timestamp.toDate()).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) 
-                            : '';
-                        
-                        div.innerHTML = `
-                            <div class="message-bubble">${escapeHtml(msg.text)}</div>
-                            <div class="message-time">
-                                <span>${time}</span>
-                                ${msg.senderId === currentUser.uid ? '<span>✓</span>' : ''}
-                            </div>
-                        `;
-                        area.appendChild(div);
-                    });
-                }
+                area.innerHTML = snap.empty ? '<div style="text-align:center;color:#aaa;margin-top:50px;">Нет сообщений</div>' : '';
+                snap.forEach(d => {
+                    const m = d.data();
+                    const div = document.createElement('div');
+                    div.className = 'message ' + (m.senderId === currentUser.uid ? 'sent' : 'received');
+                    div.innerHTML = `<div class="message-bubble">${m.text}</div><div class="message-time">${m.timestamp?new Date(m.timestamp.toDate()).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}):''} ${m.senderId===currentUser.uid?'✓':''}</div>`;
+                    area.appendChild(div);
+                });
                 area.scrollTop = area.scrollHeight;
-            }, (error) => {
-                console.error('Ошибка загрузки сообщений:', error);
-                document.getElementById('messagesArea').innerHTML = '<div style="text-align:center;color:#e74c3c;margin-top:50px;">Ошибка загрузки сообщений</div>';
             });
         }
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        window.sendMessage = async function() {
-            const input = document.getElementById('messageInput');
-            const text = input.value.trim();
-            
-            if (!text) return;
-            if (!selectedUser) { notify('Выберите пользователя', 'error'); return; }
-            
-            const chatId = [currentUser.uid, selectedUser.id].sort().join('_');
-            
-            try {
-                await addDoc(collection(db, 'messages'), {
-                    chatId: chatId,
-                    senderId: currentUser.uid,
-                    receiverId: selectedUser.id,
-                    text: text,
-                    timestamp: serverTimestamp()
-                });
-                input.value = '';
-                input.focus();
-            } catch (e) {
-                console.error('Ошибка отправки:', e);
-                notify('Ошибка отправки', 'error');
-            }
+        window.sendMessage = async () => {
+            const text = document.getElementById('messageInput').value.trim();
+            if (!text || !selectedUser) return;
+            await addDoc(collection(db, 'messages'), {
+                chatId: [currentUser.uid, selectedUser.id].sort().join('_'),
+                senderId: currentUser.uid, receiverId: selectedUser.id, text, timestamp: serverTimestamp()
+            });
+            document.getElementById('messageInput').value = '';
         };
 
-        window.logout = async function() {
-            if (currentUser) {
-                try {
-                    await setDoc(doc(db, 'users', currentUser.uid), { online: false, lastSeen: serverTimestamp() }, { merge: true });
-                } catch(e) {}
-            }
-            if (messagesUnsub) messagesUnsub();
+        window.logout = async () => {
+            await setDoc(doc(db, 'users', currentUser.uid), { online: false, lastSeen: serverTimestamp() }, { merge: true });
+            if (unsub) unsub();
             endCallQuiet();
-            if (peer) { peer.destroy(); peer = null; }
+            if (peer) peer.destroy();
             await signOut(auth);
         };
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && document.activeElement === document.getElementById('messageInput')) {
-                window.sendMessage();
-            }
-        });
     </script>
 </body>
 </html>
