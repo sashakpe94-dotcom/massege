@@ -338,8 +338,17 @@
             const id = uid.replace(/[^a-zA-Z0-9]/g, '');
             
             peer = new Peer(id, {
-                host: '0.peerjs.com', port: 443, secure: true,
-                config: { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] }
+                host: '0.peerjs.com',
+                port: 443,
+                secure: true,
+                path: '/',
+                config: {
+                    iceServers: [
+                        { urls: 'stun:stun.l.google.com:19302' },
+                        { urls: 'stun:stun1.l.google.com:19302' },
+                        { urls: 'stun:stun2.l.google.com:19302' }
+                    ]
+                }
             });
             
             peer.on('open', (pid) => { console.log('PeerJS готов:', pid); });
@@ -352,12 +361,9 @@
                     document.getElementById('callerName').textContent = d.exists() ? d.data().username : 'Пользователь';
                 });
                 
-                // Автоотклонение если не ответили за 30 секунд
                 clearTimeout(call._timeout);
                 call._timeout = setTimeout(() => {
-                    if (incomingCall === call) {
-                        window.rejectCall();
-                    }
+                    if (incomingCall === call) window.rejectCall();
                 }, 30000);
             });
             
@@ -653,7 +659,6 @@
             await signOut(auth);
         };
 
-        // Enter для отправки
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && document.activeElement === document.getElementById('messageInput')) {
                 window.sendMessage();
